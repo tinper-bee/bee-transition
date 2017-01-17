@@ -283,7 +283,11 @@ var Transition = function (_Component) {
     this.setNextCallback(handler);
 
     if (node) {
-      (0, _on2["default"])(node, transitionEndEvent, this.nextCallback);
+      if (transitionEndEvent == undefined) {
+        this.nextCallback();
+      } else {
+        (0, _on2["default"])(node, transitionEndEvent, this.nextCallback);
+      }
       setTimeout(this.nextCallback, this.props.timeout);
     } else {
       setTimeout(this.nextCallback, 0);
@@ -296,10 +300,11 @@ var Transition = function (_Component) {
       return null;
     }
 
-    var _props = this.props,
-        children = _props.children,
-        className = _props.className,
-        childProps = _objectWithoutProperties(_props, ['children', 'className']);
+    var _props = this.props;
+    var children = _props.children;
+    var className = _props.className;
+
+    var childProps = _objectWithoutProperties(_props, ['children', 'className']);
 
     Object.keys(Transition.propTypes).forEach(function (key) {
       return delete childProps[key];
