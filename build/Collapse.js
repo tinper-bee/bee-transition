@@ -18,6 +18,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Transition = require('./Transition');
 
 var _Transition2 = _interopRequireDefault(_Transition);
@@ -62,50 +66,50 @@ var propTypes = {
   /**
    * Show the component; triggers the expand or collapse animation
    */
-  "in": _react2["default"].PropTypes.bool,
+  "in": _propTypes2["default"].bool,
 
   /**
    * Unmount the component (remove it from the DOM) when it is collapsed
    */
-  unmountOnExit: _react2["default"].PropTypes.bool,
+  unmountOnExit: _propTypes2["default"].bool,
 
   /**
    * Run the expand animation when the component mounts, if it is initially
    * shown
    */
-  transitionAppear: _react2["default"].PropTypes.bool,
+  transitionAppear: _propTypes2["default"].bool,
 
   /**
    * Duration of the collapse animation in milliseconds, to ensure that
    * finishing callbacks are fired even if the original browser transition end
    * events are canceled
    */
-  timeout: _react2["default"].PropTypes.number,
+  timeout: _propTypes2["default"].number,
 
   /**
    * Callback fired before the component expands
    */
-  onEnter: _react2["default"].PropTypes.func,
+  onEnter: _propTypes2["default"].func,
   /**
    * Callback fired after the component starts to expand
    */
-  onEntering: _react2["default"].PropTypes.func,
+  onEntering: _propTypes2["default"].func,
   /**
    * Callback fired after the component has expanded
    */
-  onEntered: _react2["default"].PropTypes.func,
+  onEntered: _propTypes2["default"].func,
   /**
    * Callback fired before the component collapses
    */
-  onExit: _react2["default"].PropTypes.func,
+  onExit: _propTypes2["default"].func,
   /**
    * Callback fired after the component starts to collapse
    */
-  onExiting: _react2["default"].PropTypes.func,
+  onExiting: _propTypes2["default"].func,
   /**
    * Callback fired after the component has collapsed
    */
-  onExited: _react2["default"].PropTypes.func,
+  onExited: _propTypes2["default"].func,
 
   /**
    * The dimension used when collapsing, or a function that returns the
@@ -114,7 +118,7 @@ var propTypes = {
    * _Note: Bootstrap only partially supports 'width'!
    * You will need to supply your own CSS animation for the `.width` CSS class._
    */
-  dimension: _react2["default"].PropTypes.oneOfType([_react2["default"].PropTypes.oneOf(['height', 'width']), _react2["default"].PropTypes.func]),
+  dimension: _propTypes2["default"].oneOfType([_propTypes2["default"].oneOf(['height', 'width']), _propTypes2["default"].func]),
 
   /**
    * Function that returns the height or width of the animating DOM node
@@ -123,12 +127,12 @@ var propTypes = {
    * should animate in its specified dimension. Called with the current
    * dimension prop value and the DOM node.
    */
-  getDimensionValue: _react2["default"].PropTypes.func,
+  getDimensionValue: _propTypes2["default"].func,
 
   /**
    * ARIA role of collapsible element
    */
-  role: _react2["default"].PropTypes.string
+  role: _propTypes2["default"].string
 };
 
 var defaultProps = {
@@ -201,15 +205,14 @@ var Collapse = function (_React$Component) {
   };
 
   Collapse.prototype.render = function render() {
-    var _props = this.props;
-    var onEnter = _props.onEnter;
-    var onEntering = _props.onEntering;
-    var onEntered = _props.onEntered;
-    var onExit = _props.onExit;
-    var onExiting = _props.onExiting;
-    var className = _props.className;
-
-    var props = _objectWithoutProperties(_props, ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'className']);
+    var _props = this.props,
+        onEnter = _props.onEnter,
+        onEntering = _props.onEntering,
+        onEntered = _props.onEntered,
+        onExit = _props.onExit,
+        onExiting = _props.onExiting,
+        className = _props.className,
+        props = _objectWithoutProperties(_props, ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'className']);
 
     delete props.dimension;
     delete props.getDimensionValue;

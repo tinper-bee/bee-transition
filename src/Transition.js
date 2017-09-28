@@ -1,8 +1,9 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 let transitionEndEvent = transitionInfo.end;
 
