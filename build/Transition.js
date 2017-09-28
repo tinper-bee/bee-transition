@@ -287,7 +287,11 @@ var Transition = function (_Component) {
     this.setNextCallback(handler);
 
     if (node) {
-      (0, _on2["default"])(node, transitionEndEvent, this.nextCallback);
+      if (transitionEndEvent == undefined) {
+        this.nextCallback();
+      } else {
+        (0, _on2["default"])(node, transitionEndEvent, this.nextCallback);
+      }
       setTimeout(this.nextCallback, this.props.timeout);
     } else {
       setTimeout(this.nextCallback, 0);

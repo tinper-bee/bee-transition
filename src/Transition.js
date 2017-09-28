@@ -240,7 +240,11 @@ class Transition extends Component {
     this.setNextCallback(handler);
 
     if (node) {
-      addEventListener(node, transitionEndEvent, this.nextCallback);
+        if(transitionEndEvent == undefined){
+            this.nextCallback();
+        }else{
+             addEventListener(node, transitionEndEvent, this.nextCallback);
+        }
       setTimeout(this.nextCallback, this.props.timeout);
     } else {
       setTimeout(this.nextCallback, 0);
