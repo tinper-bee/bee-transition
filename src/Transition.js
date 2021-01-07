@@ -110,6 +110,8 @@ class Transition extends Component {
     this.state = {status: initialStatus};
 
     this.nextCallback = null;
+
+    this.timer = null;
   }
 
   componentDidMount() {
@@ -166,6 +168,8 @@ class Transition extends Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.timer)
+    this.timer = null
     this.cancelNextCallback();
   }
 
@@ -245,9 +249,11 @@ class Transition extends Component {
         }else{
              addEventListener(node, transitionEndEvent, this.nextCallback);
         }
-      setTimeout(this.nextCallback, this.props.timeout);
+      clearTimeout(this.timer)
+      this.timer = setTimeout(this.nextCallback, this.props.timeout);
     } else {
-      setTimeout(this.nextCallback, 0);
+      clearTimeout(this.timer)
+      this.timer = setTimeout(this.nextCallback, 0);
     }
   }
 

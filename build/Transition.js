@@ -153,6 +153,8 @@ var Transition = function (_Component) {
     _this.state = { status: initialStatus };
 
     _this.nextCallback = null;
+
+    _this.timer = null;
     return _this;
   }
 
@@ -208,6 +210,8 @@ var Transition = function (_Component) {
   };
 
   Transition.prototype.componentWillUnmount = function componentWillUnmount() {
+    clearTimeout(this.timer);
+    this.timer = null;
     this.cancelNextCallback();
   };
 
@@ -292,9 +296,11 @@ var Transition = function (_Component) {
       } else {
         (0, _on2["default"])(node, transitionEndEvent, this.nextCallback);
       }
-      setTimeout(this.nextCallback, this.props.timeout);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.nextCallback, this.props.timeout);
     } else {
-      setTimeout(this.nextCallback, 0);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.nextCallback, 0);
     }
   };
 
